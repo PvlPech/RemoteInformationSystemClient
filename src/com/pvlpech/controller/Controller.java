@@ -1,34 +1,11 @@
 package com.pvlpech.controller;
 
-import com.pvlpech.view.View;
-import org.json.JSONObject;
-
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-/**
- * Created by pvlpech on 11.11.2018.
- */
-public class Controller implements PropertyChangeListener {
+public interface Controller extends PropertyChangeListener {
 
-    private View view;
+    void addPropertyChangeListener(PropertyChangeListener pcl);
 
-    public Controller(View view) {
-        this.view = view;
+    void removePropertyChangeListener(PropertyChangeListener pcl);
 
-        this.view.addPropertyChangeListener(this);
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        JSONObject jsonObject = (JSONObject) evt.getNewValue();
-        String operation = jsonObject.getString("operation");
-        if ("exit".equalsIgnoreCase(operation)) {
-            return;
-        } else if ("help".equalsIgnoreCase(operation)) {
-            view.showHelp();
-        } else {
-//            loader.performAction(jsonObject);
-        }
-    }
 }
