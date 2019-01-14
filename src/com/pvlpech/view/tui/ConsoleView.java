@@ -45,10 +45,10 @@ public class ConsoleView implements View {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case "info":
+            case Constants.INFO_TOPIC:
                 System.out.println(evt.getNewValue().toString());
                 break;
-            case "get":
+            case Constants.GET_TOPIC:
                 JSONObject jsonObject = (JSONObject) (evt.getNewValue());
                 JSONArray jsonArray = jsonObject.getJSONArray("entities");
                 Iterator it = jsonArray.iterator();

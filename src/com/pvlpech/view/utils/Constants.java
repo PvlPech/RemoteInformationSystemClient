@@ -8,6 +8,8 @@ public interface Constants {
     String HELP_MESSAGE = "Help should be here";
     String SWING_HEADER = "Information System";
     String VIEW_TOPIC = "action";
+    String INFO_TOPIC = "info";
+    String GET_TOPIC = "get";
 
     String ADD_PREFIX = "add";
     String GET_PREFIX = "get";

@@ -52,10 +52,10 @@ public class SwingView extends JFrame implements View {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case "info":
+            case Constants.VIEW_TOPIC:
                 showMessageDialog(evt.getNewValue().toString(), "Information");
                 break;
-            case "get":
+            case Constants.GET_TOPIC:
                 JSONObject jsonObject = (JSONObject) (evt.getNewValue());
                 JSONArray jsonArray = jsonObject.getJSONArray("entities");
                 if (Constants.GROUP_PREFIX.equals(jsonObject.getString("entity"))) {
