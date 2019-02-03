@@ -1,6 +1,7 @@
 package com.pvlpech.controller;
 
 import com.pvlpech.view.View;
+import com.pvlpech.view.utils.Constants;
 import org.json.JSONObject;
 
 import java.beans.PropertyChangeEvent;
@@ -63,8 +64,6 @@ public class SocketController implements Controller, Runnable {
                 dataOutputStream.writeUTF(jsonObject. toString());
                 dataOutputStream.flush();
 
-                //TODO depends on response object (string or json we should generate appropriate topic)
-//                support.firePropertyChange(Constants.VIEW_TOPIC, null, jsonObject);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -75,7 +74,10 @@ public class SocketController implements Controller, Runnable {
     public void run() {
         try {
             while (!socket.isClosed()) {
-                System.out.println("Response from server: " + dataInputStream.readUTF());
+                JSONObject jsonObject = new JSONObject(dataInputStream.readUTF());
+                System.out.println("Response from server: " + jsonObject);
+                support.firePropertyChange(Constants.GET_TOPIC, null, jsonObject);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
